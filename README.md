@@ -21,20 +21,30 @@ layout — is treated as a variable, not a commitment.
 
 ## Models
 
-| Model | Task | Status |
-|---|---|---|
-| [Wren-TTS-360M-v1](https://huggingface.co/shangeth/Wren-TTS-360M-v1) | Text → Speech | ✅ Released |
-| Wren-TTS-360M-v1.1 | Text → Speech (improved stopping) | 🔜 In progress |
-| Wren-ASR | Speech → Text | 📋 Planned |
-| Wren-LM | Speech language modelling | 📋 Planned |
-| Wren-Omni | Unified speech understanding + synthesis | 📋 Planned |
+| Model | Task | Languages | Status |
+|---|---|---|---|
+| [Wren-TTS-360M-v1](https://huggingface.co/shangeth/Wren-TTS-360M-v1) | Text → Speech | English | ✅ Released |
+| [Wren-TTS-0.5B-multi](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi) | Text → Speech (multilingual) | en · de · fr · es · nl · it · pl · pt | ✅ Released |
+| Wren-ASR | Speech → Text | — | 📋 Planned |
+| Wren-LM | Speech language modelling | — | 📋 Planned |
+| Wren-Omni | Unified speech understanding + synthesis | — | 📋 Planned |
 
 ## Datasets
 
-| Dataset | Description | Rows | License |
+Pre-extracted [Kyutai Mimi](https://huggingface.co/kyutai/mimi) codec tokens for the
+underlying speech corpora — see [wren-datasets](https://github.com/shangeth/wren-datasets)
+for extraction tooling and full details.
+
+| Dataset | Source | Rows | License |
 |---|---|---|---|
-| [shangeth/ljspeech-mimi-codes](https://huggingface.co/datasets/shangeth/ljspeech-mimi-codes) | LJSpeech pre-extracted neural codec tokens | ~13k | CC0 |
-| [shangeth/librispeech-mimi-codes](https://huggingface.co/datasets/shangeth/librispeech-mimi-codes) | LibriSpeech all standard splits, pre-extracted | ~280k | CC-BY-4.0 |
+| [shangeth/ljspeech-mimi-codes](https://huggingface.co/datasets/shangeth/ljspeech-mimi-codes) | LJSpeech | ~13k | CC0 |
+| [shangeth/librispeech-mimi-codes](https://huggingface.co/datasets/shangeth/librispeech-mimi-codes) | LibriSpeech | ~280k | CC-BY-4.0 |
+| [shangeth/libritts-r-mimi-codes](https://huggingface.co/datasets/shangeth/libritts-r-mimi-codes) | LibriTTS-R | ~360k | CC-BY-4.0 |
+| [shangeth/hifi-tts-mimi-codes](https://huggingface.co/datasets/shangeth/hifi-tts-mimi-codes) | HiFi-TTS | ~290k | CC-BY-4.0 |
+| [shangeth/vctk-mimi-codes](https://huggingface.co/datasets/shangeth/vctk-mimi-codes) | VCTK | ~44k | CC-BY-4.0 |
+| [shangeth/jenny-mimi-codes](https://huggingface.co/datasets/shangeth/jenny-mimi-codes) | Jenny TTS | ~21k | Apache-2.0 |
+| [shangeth/expresso-mimi-codes](https://huggingface.co/datasets/shangeth/expresso-mimi-codes) | Expresso (conversational) | ~40k | **CC-BY-NC-4.0** |
+| [shangeth/mls-mimi-codes](https://huggingface.co/datasets/shangeth/mls-mimi-codes) | Multilingual LibriSpeech (7 langs) | ~6M | CC-BY-4.0 |
 
 ---
 
@@ -75,12 +85,12 @@ audio ──► codec encoder ──► [shared token sequence] ──► text  
 
 **v1 implementation choices** (not fixed for future releases):
 
-| Component | v1 choice | Alternatives being explored |
-|---|---|---|
-| LLM backbone | SmolLM2-360M | Qwen, Phi, Llama variants, custom |
-| Audio codec | Kyutai Mimi | EnCodec, DAC, SoundStream, learned |
-| Token layout | Interleaved per-frame | Flattened, parallel, hierarchical |
-| Conditioning | Reference-audio prefix | Speaker embedding, style tokens |
+| Component | v1 (English) | v1-multi (multilingual) | Alternatives being explored |
+|---|---|---|---|
+| LLM backbone | SmolLM2-360M | Qwen2.5-0.5B | Phi, Llama variants, custom |
+| Audio codec | Kyutai Mimi | Kyutai Mimi | EnCodec, DAC, SoundStream, learned |
+| Token layout | MusicGen-style delay | MusicGen-style delay | Flat interleaved, parallel, hierarchical |
+| Conditioning | Reference-audio prefix | Reference-audio prefix | Speaker embedding, style tokens |
 
 ---
 
@@ -136,7 +146,7 @@ affect what the model can and cannot disentangle?
 ## Citation
 
 ```bibtex
-@misc{wren2025,
+@misc{wren2026,
   title  = {Wren: A Family of Small Open-Weight Models for Unified Speech-Text Modelling},
   author = {Shangeth Rajaa},
   year   = {2026},
