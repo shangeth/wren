@@ -23,9 +23,9 @@ layout — is treated as a variable, not a commitment.
 
 | Model | Task | Languages | Status |
 |---|---|---|---|
-| [Wren-TTS-360M-v1](https://huggingface.co/shangeth/Wren-TTS-360M-v1) | Text → Speech | English | ✅ Released |
+| [Wren-TTS-360M-en](https://huggingface.co/shangeth/Wren-TTS-360M-en) | Text → Speech | English | ✅ Released |
 | [Wren-TTS-0.5B-multi](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi) | Text → Speech (multilingual) | en · de · fr · es · nl · it · pl · pt | ✅ Released |
-| [Wren-TTS-0.5B-multi-expressive](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi-expressive) | Text → Speech with **23 style tags** (fine-tune of v0.5B-multi on Expresso) | en + 7 langs | ✅ Released |
+| [Wren-TTS-0.5B-multi-expressive](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi-expressive) | Text → Speech with **23 style tags** (fine-tune of `Wren-TTS-0.5B-multi` on Expresso) | en + 7 langs | ✅ Released |
 | Wren-ASR | Speech → Text | — | 📋 Planned |
 | Wren-LM | Speech language modelling | — | 📋 Planned |
 | Wren-Omni | Unified speech understanding + synthesis | — | 📋 Planned |
@@ -49,7 +49,7 @@ for extraction tooling and full details.
 
 ---
 
-## Quickstart (v1 TTS)
+## Quickstart (TTS)
 
 ```bash
 pip install torch torchaudio transformers
@@ -59,7 +59,7 @@ pip install torch torchaudio transformers
 import torch
 from transformers import AutoModel, AutoProcessor
 
-model_id  = "shangeth/Wren-TTS-360M-v1"
+model_id  = "shangeth/Wren-TTS-360M-en"
 device    = "cuda" if torch.cuda.is_available() else "cpu"
 
 processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True)
@@ -73,9 +73,9 @@ processor.save_audio(waveform, "out.wav")
 
 ---
 
-## v1 Architecture
+## Architecture
 
-The first release models speech and text in a shared discrete token sequence —
+The current TTS releases model speech and text in a shared discrete token sequence —
 speech is encoded into neural codec tokens, interleaved with text tokens, and
 processed by a single autoregressive model:
 
@@ -84,9 +84,9 @@ text ──► [shared token sequence] ──► audio codec tokens ──► de
 audio ──► codec encoder ──► [shared token sequence] ──► text   (ASR, coming)
 ```
 
-**v1 implementation choices** (not fixed for future releases):
+**Current implementation choices** (not fixed for future releases):
 
-| Component | v1 (English) | v1-multi (multilingual) | Alternatives being explored |
+| Component | English (`en`) | Multilingual (`multi`) | Alternatives being explored |
 |---|---|---|---|
 | LLM backbone | SmolLM2-360M | Qwen2.5-0.5B | Phi, Llama variants, custom |
 | Audio codec | Kyutai Mimi | Kyutai Mimi | EnCodec, DAC, SoundStream, learned |
