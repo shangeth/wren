@@ -25,6 +25,7 @@ layout — is treated as a variable, not a commitment.
 |---|---|---|---|
 | [Wren-TTS-360M-v1](https://huggingface.co/shangeth/Wren-TTS-360M-v1) | Text → Speech | English | ✅ Released |
 | [Wren-TTS-0.5B-multi](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi) | Text → Speech (multilingual) | en · de · fr · es · nl · it · pl · pt | ✅ Released |
+| [Wren-TTS-0.5B-multi-expressive](https://huggingface.co/shangeth/Wren-TTS-0.5B-multi-expressive) | Text → Speech with **23 style tags** (fine-tune of v0.5B-multi on Expresso) | en + 7 langs | ✅ Released |
 | Wren-ASR | Speech → Text | — | 📋 Planned |
 | Wren-LM | Speech language modelling | — | 📋 Planned |
 | Wren-Omni | Unified speech understanding + synthesis | — | 📋 Planned |
@@ -40,10 +41,10 @@ for extraction tooling and full details.
 | [shangeth/ljspeech-mimi-codes](https://huggingface.co/datasets/shangeth/ljspeech-mimi-codes) | LJSpeech | ~13k | CC0 |
 | [shangeth/librispeech-mimi-codes](https://huggingface.co/datasets/shangeth/librispeech-mimi-codes) | LibriSpeech | ~280k | CC-BY-4.0 |
 | [shangeth/libritts-r-mimi-codes](https://huggingface.co/datasets/shangeth/libritts-r-mimi-codes) | LibriTTS-R | ~360k | CC-BY-4.0 |
-| [shangeth/hifi-tts-mimi-codes](https://huggingface.co/datasets/shangeth/hifi-tts-mimi-codes) | HiFi-TTS | ~290k | CC-BY-4.0 |
 | [shangeth/vctk-mimi-codes](https://huggingface.co/datasets/shangeth/vctk-mimi-codes) | VCTK | ~44k | CC-BY-4.0 |
 | [shangeth/jenny-mimi-codes](https://huggingface.co/datasets/shangeth/jenny-mimi-codes) | Jenny TTS | ~21k | Apache-2.0 |
-| [shangeth/expresso-mimi-codes](https://huggingface.co/datasets/shangeth/expresso-mimi-codes) | Expresso (conversational) | ~40k | **CC-BY-NC-4.0** |
+| [shangeth/expresso-mimi-codes](https://huggingface.co/datasets/shangeth/expresso-mimi-codes) | Expresso (read + conversational) | ~40k | **CC-BY-NC-4.0** |
+| [shangeth/expresso-mimi-codes-tagged](https://huggingface.co/datasets/shangeth/expresso-mimi-codes-tagged) | Expresso with 19 style tags prepended to text (fine-tune-ready) | ~24k | **CC-BY-NC-4.0** |
 | [shangeth/mls-mimi-codes](https://huggingface.co/datasets/shangeth/mls-mimi-codes) | Multilingual LibriSpeech (7 langs) | ~6M | CC-BY-4.0 |
 
 ---
